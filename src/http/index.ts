@@ -1,46 +1,18 @@
-import { Elysia, t } from 'elysia'
-import { db } from '../db/connection'
-import { restaurants, users } from '../db/schema'
+import { Elysia } from 'elysia'
+import { registerRestaurant } from './routes/register-restaurant'
+import { sendAuthLink } from './routes/send-auth-link'
+import { authenticateFromLink } from './routes/authenticate-from-link'
+import { signOut } from './routes/sign-out'
+import { getCurrentProfile } from './routes/get-current-profile'
+import { getManagedRestaurants } from './routes/get-managed-restaurants'
 
-const app = new Elysia().post(
-  '/restaurants',
-  async ({ body, set }) => {
-    const { restaurantName, restaurantDescription, name, phone, email } = body
-
-    const [manager] = await db
-      .insert(users)
-      .values([
-        {
-          name,
-          phone,
-          email,
-          role: 'manager',
-        },
-      ])
-      .returning({
-        id: users.id,
-      })
-
-    const restaurant = await db.insert(restaurants).values([
-      {
-        name: restaurantName,
-        description: restaurantDescription,
-        managerId: manager.id,
-      },
-    ])
-
-    set.status = 204
-  },
-  {
-    body: t.Object({
-      restaurantName: t.String(),
-      restaurantDescription: t.String(),
-      name: t.String(),
-      phone: t.String(),
-      email: t.String({ format: 'email' }),
-    }),
-  },
-)
+const app = new Elysia()
+  .use(registerRestaurant)
+  .use(sendAuthLink)
+  .use(authenticateFromLink)
+  .use(signOut)
+  .use(getCurrentProfile)
+  .use(getManagedRestaurants)
 
 app.listen(3333, () => {
   console.log('Bun server started on port 3333!')
