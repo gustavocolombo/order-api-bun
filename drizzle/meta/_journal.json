@@ -29,6 +29,13 @@
       "when": 1735773355102,
       "tag": "0003_productive_vindicator",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1736562904399,
+      "tag": "0004_fixed_lionheart",
+      "breakpoints": true
     }
   ]
 }
