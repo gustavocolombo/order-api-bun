@@ -1,6 +1,6 @@
 {
-  "id": "37aeb88a-f797-458b-9dbc-9fbddb087c62",
-  "prevId": "0e65a0a6-bb0f-4642-b33d-7c2fc78da9ed",
+  "id": "82ca8965-132f-4461-b7fc-5f1510b73e1c",
+  "prevId": "37aeb88a-f797-458b-9dbc-9fbddb087c62",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -143,11 +143,6 @@
         "id": {
           "name": "id",
           "type": "text",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "user_id": {
-          "name": "user_id",
           "primaryKey": false,
           "notNull": true
         },
@@ -157,10 +152,6 @@
           "primaryKey": false,
           "notNull": true
         },
-        "code": {
-          "name": "code",
-          "type": "text",
-          "primaryKey": false,
         "description": {
           "name": "description",
           "type": "text",
@@ -190,12 +181,6 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "auth_links_user_id_users_id_fk": {
-          "name": "auth_links_user_id_users_id_fk",
-          "tableFrom": "auth_links",
-          "tableTo": "users",
-          "columnsFrom": [
-            "user_id"
         "products_id_restaurants_id_fk": {
           "name": "products_id_restaurants_id_fk",
           "tableFrom": "products",
@@ -303,6 +288,17 @@
       "values": [
         "manager",
         "customer"
+      ]
+    },
+    "public.orderStatusEnum": {
+      "name": "orderStatusEnum",
+      "schema": "public",
+      "values": [
+        "pending",
+        "processing",
+        "delivering",
+        "delivered",
+        "canceled"
       ]
     }
   },

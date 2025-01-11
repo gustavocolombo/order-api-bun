@@ -1,0 +1,1 @@
+-- CREATE TYPE "public"."orderStatusEnum" AS ENUM('pending', 'processing', 'delivering', 'delivered', 'canceled');
