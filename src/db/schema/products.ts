@@ -10,7 +10,7 @@ export const products = pgTable('products', {
     .primaryKey(),
   name: text('name').notNull(),
   description: text('description'),
-  restaurantId: text('id')
+  restaurantId: text('restaurant_id')
     .references(() => restaurants.id, {
       onDelete: 'cascade',
     })
