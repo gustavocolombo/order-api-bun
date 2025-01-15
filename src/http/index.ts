@@ -5,6 +5,12 @@ import { authenticateFromLink } from './routes/authenticate-from-link'
 import { signOut } from './routes/sign-out'
 import { getCurrentProfile } from './routes/get-current-profile'
 import { getManagedRestaurants } from './routes/get-managed-restaurants'
+import { getOrderDetails } from './routes/get-order-details'
+import { approveOrder } from './routes/approve-order'
+import { cancelOrder } from './routes/cancel-order'
+import { deliverOrder } from './routes/deliver-order'
+import { dispatchOrder } from './routes/dispatch-order'
+import { getOrders } from './routes/get-orders'
 
 const app = new Elysia()
   .use(registerRestaurant)
@@ -13,6 +19,12 @@ const app = new Elysia()
   .use(signOut)
   .use(getCurrentProfile)
   .use(getManagedRestaurants)
+  .use(getOrderDetails)
+  .use(approveOrder)
+  .use(cancelOrder)
+  .use(deliverOrder)
+  .use(dispatchOrder)
+  .use(getOrders)
 
 app.listen(3333, () => {
   console.log('Bun server started on port 3333!')
